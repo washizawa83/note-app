@@ -3,6 +3,10 @@
 import { useState } from 'react';
 import { FolderTree } from '../features/sidebar/FolderTree';
 import { Folder } from '@/app/types/folder';
+import { FaCog } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
+import Link from 'next/link';
+import { Logo } from '../ui/Logo';
 
 const MIN_SIDEBAR_WIDTH = 200;
 const mockFolders: Folder[] = [
@@ -98,13 +102,19 @@ export const Sidebar = () => {
       className="bg-light-base dark:bg-dark-base relative flex h-screen"
       style={{ width: sidebarWidth }}
     >
-      <div className="w-full grow py-4">
-        <div className="mb-5 flex items-center pl-4">
-          <div className="h-[30px] w-[30px] bg-[url('/images/thinkronize-light.png')] bg-cover bg-center dark:bg-[url('/images/thinkronize-dark.png')]"></div>
-          <h1 className="pl-2 text-lg font-bold">Thinkronize</h1>
+      <div className="flex w-full grow flex-col">
+        <div className="mb-3 py-4 pl-4">
+          <Logo />
         </div>
-        <div>
+        <div className="grow overflow-y-auto">
           <FolderTree folders={mockFolders} />
+        </div>
+        <div className="flex items-center p-2">
+          <Link href="/pages/settings">
+            <IconContext.Provider value={{ size: '18px' }}>
+              <FaCog />
+            </IconContext.Provider>
+          </Link>
         </div>
       </div>
       <span
